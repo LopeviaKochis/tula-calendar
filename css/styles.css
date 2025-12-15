@@ -1,0 +1,141 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden; /* Evita scroll innecesario */
+}
+
+/* --- CONTENEDOR RESPONSIVO --- */
+.card-container {
+    perspective: 1000px;
+    /* La tarjeta ocupará el 90% del ancho de la pantalla, pero nunca más de 400px */
+    width: 90vw;
+    max-width: 400px;
+    /* La altura se ajusta para mantener una proporción elegante (tipo tarjeta de presentación vertical) */
+    aspect-ratio: 3/5; 
+    max-height: 85vh; /* Que no se salga de la pantalla en vertical */
+    cursor: pointer;
+}
+
+/* --- LA TARJETA 3D --- */
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+/* --- CARAS COMUNES --- */
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+}
+
+/* --- FRENTE --- */
+.front {
+    /* Ruta relativa desde la carpeta css hacia atrás (../) */
+    background-image: url('../assets/portada.jpg'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.hint-overlay {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    text-align: center;
+}
+
+.hint-text {
+    color: white;
+    font-size: 0.9rem;
+    animation: bounce 2s infinite;
+    display: inline-block;
+}
+
+/* --- DORSO (Calendario) --- */
+.back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.back-header h2 {
+    color: #f52af1; /* El color rosa de Tula */
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.slogan {
+    font-size: 0.8rem;
+    color: #666;
+    font-style: italic;
+}
+
+.calendar-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.calendar-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.back-footer {
+    font-size: 0.9rem;
+}
+
+.btn-whatsapp {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Animación del texto "Toca para ver" */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
