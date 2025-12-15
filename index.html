@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario 2026 - Nombre del Negocio</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5; /* Color de fondo de la página */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Contenedor principal de la tarjeta */
+        .card-container {
+            perspective: 1000px; /* Da la sensación de 3D */
+            width: 300px;  /* Ancho de la tarjeta */
+            height: 500px; /* Alto de la tarjeta */
+            cursor: pointer;
+        }
+
+        /* La tarjeta en sí */
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+        }
+
+        /* Clase que se activa al hacer click */
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Caras de la tarjeta (Frente y Dorso) */
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Oculta la cara trasera cuando no se ve */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Estilo específico del frente */
+        .front {
+            background-image: url('tu-portada.jpg'); /* AQUÍ PONES TU IMAGEN DE PORTADA */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Estilo específico del dorso (El calendario) */
+        .back {
+            transform: rotateY(180deg);
+            background-color: #ffffff;
+        }
+
+        .back h2 { color: #333; }
+        .back p { color: #666; font-size: 0.9rem; }
+        
+        /* Botón o indicación para girar */
+        .hint {
+            position: absolute;
+            bottom: 10px;
+            color: white;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container" onclick="flipCard()">
+        <div class="card" id="miTarjeta">
+            
+            <div class="face front">
+                <div class="hint">Toca para ver el calendario</div>
+            </div>
+
+            <div class="face back">
+                <h2>Comercio de Mamá</h2>
+                <p>¡Gracias por tu preferencia!</p>
+                <hr style="width:50%; border: 1px solid #ddd;">
+                
+                <img src="calendario-meses.png" alt="Calendario" style="width: 100%; height: auto; border-radius: 8px;">
+                
+                <p style="margin-top: 15px;">
+                    <strong>Horario:</strong> Lunes a Sábado 9am - 6pm<br>
+                    <strong>Contacto:</strong> +51 999 999 999
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function flipCard() {
+            const card = document.getElementById('miTarjeta');
+            card.classList.toggle('flipped');
+        }
+    </script>
+
+</body>
+</html>
